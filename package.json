@@ -2,7 +2,7 @@
   "name": "dash_datatables",
   "version": "0.0.1",
   "description": "Dash wrapper for Datatables.net",
-"repository": {
+  "repository": {
     "type": "git",
     "url": "git://github.com/stevej2608/dash-datatables.git"
   },
@@ -19,7 +19,10 @@
     "build:backends": "dash-generate-components ./src/lib/components dash_datatables -p package-info.json --r-prefix '' --jl-prefix ''",
     "build:backends-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
     "build": "npm run build:js && npm run build:backends",
-    "build:activated": "npm run build:js && npm run build:backends-activated"
+    "build:activated": "npm run build:js && npm run build:backends-activated",
+    "clean:py": "find . -type d -name __pycache__ -prune -exec rm -fr {} \\;",
+    "clean:js": "rm -f NAMESPACE && rm -rf src/jl R deps inst && find dash_datatables ! -name '__init__.py' -type f -exec rm -f {} +",
+    "clean": "npm run clean:js && npm run clean:py && rm -rf ./man/* && rm -f src/*.jl && rm -rf dist/*"
   },
   "author": "Steve Jones <jonesst2608@gmail.com>",
   "license": "MIT",
