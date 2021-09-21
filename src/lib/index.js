@@ -2,5 +2,5 @@
 import DashDatatables from './components/DashDatatables.react';
 
 export {
-    DashDatatables
+    DashDatatables,
 };
