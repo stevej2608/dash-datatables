@@ -2,7 +2,7 @@
 
 [Dash](https://dash.plot.ly/) wrapper for the wonderful **[DataTables.net](https://datatables.net/)**
 
-![](docs/img/datatables.png)
+![](https://raw.githubusercontent.com/stevej2608/dash-datatables/main/docs/img/datatables.png)
 
 **Code Snippet**
 ```
