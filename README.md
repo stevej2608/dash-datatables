@@ -1,10 +1,8 @@
 # Dash Datatables
 
-[Dash](https://dash.plot.ly/) wrapper for the wonderful **[DataTables.net](https://datatables.net/)**
+Minimal [Dash](https://dash.plot.ly/) wrapper for the wonderful **[DataTables.net](https://datatables.net/)**
 
 ![](docs/img/datatables.png)
-
-
 **Code Snippet**
 ```
 from dash import html
@@ -27,8 +25,7 @@ layout = html.Div([
     )
 ])
 ```
-
-## Building
+## Building component
  
 To build the new Dash component source you must have python and node installed on 
 your computer.
@@ -43,6 +40,25 @@ Create and activate a clean python environment, then:
 
     npm run build:dist
 ```
+#### Create tarball
+
+First change the release version in [package.json](package.json), then:
+
+    python setup.py sdist bdist_wheel
+
+The tarball is in *dist/dash_datatables-<version>.tar.gz*
+
+If need, you can copy and install the tarball directly in a dash project:
+
+    pip install dash_holoniq_components-<version>.tar.gz
+
+#### Publish
+
+To upload the package to pypi. See [Create a production build and publish]
+
+    twine upload dist/*
+
+### Usage Demo
 
 To run the demo
 
@@ -51,12 +67,6 @@ To run the demo
 Then open [http://localhost:8050/solar](http://localhost:8050/solar)
 
 ![](docs/img/demo.png)
-
-#### Publish
-
-See [Create a production build and publish]
-
-    twine upload dist/*
 
 ## Debugging the javascript component source
 

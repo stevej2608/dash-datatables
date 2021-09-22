@@ -6,6 +6,7 @@ include dash_datatables/*-shared.js
 include dash_datatables/*-shared.js.map
 include dash_datatables/metadata.json
 include dash_datatables/package-info.json
+include landing-page.md
 include README.md
 include LICENSE
 include package.json
