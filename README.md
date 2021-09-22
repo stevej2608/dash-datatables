@@ -68,24 +68,26 @@ Then open [http://localhost:8050/solar](http://localhost:8050/solar)
 
 ![](docs/img/demo.png)
 
-## Debugging the javascript component source
+### Debugging the python demo `usage.py`
 
-A simple javascript demo `src\demo\index.js` is used to allow the `raw` javascript to
-be debugged. To debug the component, breakpoints etc:
-
-    npm run start
-
-Then select `Debug JS Demo` from the lunch options and press `F5` to launch the 
-Chrome debug configuration.
-
-## Debugging the python demo `usage.py`
-
-Then select `Debug usage.py` from the lunch options and press `F5` to launch the 
+In VSCODE select `2. Debug usage.py` from the launch options and press `F5` to launch the 
 Flask/Dash development server.
 
-Open [http://localhost:8050/solar](http://localhost:8050/solar)
+Open [http://localhost:8050](http://localhost:8050)
 
 Set breakpoints as required.
+
+### Debugging the component react.js source
+
+To debug/single-step the JS component code in conjunction with a dash application:
+
+In a terminal window start the dash application:
+
+    python usage.py
+
+Select debugger launch *1: JS Browser* and press F5. The chrome browser
+will open and display your application. Enter breakpoints in the source
+code eg *./src/lib/components/DashDatatables.react.js* as required.
 
 ## Project
 
