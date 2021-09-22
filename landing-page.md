@@ -47,6 +47,6 @@ repository and open a [pull request][dash-datatables-pulls].
 
 
 [dash-homepage]: https://dash.plot.ly/
-[dhc-repo]: https://github.com/stevej2608/dash-datatables
+[dash-datatables-repo]: https://github.com/stevej2608/dash-datatables
 [docs-homepage]: https://github.com/stevej2608/dash-datatables/blob/master/README.md
-[dhc-pulls]: https://github.com/stevej2608/dash-datatables/pulls
+[dash-datatables-pulls]: https://github.com/stevej2608/dash-datatables/pulls
