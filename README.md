@@ -4,6 +4,9 @@ Minimal [Dash](https://dash.plot.ly/) wrapper for the wonderful **[DataTables.ne
 
 ![](docs/img/datatables.png)
 **Code Snippet**
+
+    pip install dash-datatables
+
 ```
 from dash import html
 import dash_datatables as ddt
@@ -64,7 +67,7 @@ To run the demo
 
         python usage.py
 
-Then open [http://localhost:8050/solar](http://localhost:8050/solar)
+Then open [http://localhost:8050/employees](http://localhost:8050/employees)
 
 ![](docs/img/demo.png)
 

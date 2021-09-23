@@ -1,6 +1,6 @@
 # dash-datatables
 
-[Dash](https://dash.plot.ly/) wrapper for the wonderful **[DataTables.net](https://datatables.net/)**
+Minimal [Dash](https://dash.plot.ly/) wrapper for the wonderful **[DataTables.net](https://datatables.net/)**
 
 ![](https://raw.githubusercontent.com/stevej2608/dash-datatables/main/docs/img/datatables.png)
 

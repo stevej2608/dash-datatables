@@ -30,9 +30,9 @@ class SinglePageApp:
             html.Br(),
             html.Div([
                 html.Div([
-                    html.Div([], className="col-md-2"),
-                    html.Div(id='page-content', className="col-md-8"),
-                    html.Div([], className="col-md-2")
+                    html.Div([], className="col-md-1"),
+                    html.Div(id='page-content', className="col-md-10"),
+                    html.Div([], className="col-md-1")
                 ], className='row')
             ], className="container-fluid"),
             html.Div(id='null')

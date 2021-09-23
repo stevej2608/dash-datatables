@@ -81,9 +81,9 @@ export default class DashDatatables extends Component {
     log.info('%s.filterButtonAction()', this.tableID)
   }
 
-    /**
-     * 
-     */
+  /**
+   * 
+   */
 
   create_datatable() {
     log.debug('%s.create_datatable()', this.tableID)
@@ -159,33 +159,46 @@ export default class DashDatatables extends Component {
 
     this.table = $el.DataTable(options);
 
-    // Add the 'Column visibility' dropdown to the button bar
-    // 
-    // https://datatables.net/extensions/buttons/
-    // https://datatables.net/reference/api/buttons()
-    // https://datatables.net/extensions/buttons/examples/initialisation/multiple.html
-    // https://datatables.net/forums/discussion/30714/problems-initiating-dt-buttons-in-function-executed-via-initcomplete
+    const props = this.props
+
+    if (props.column_visibility) {
+      
+      this.table.on('column-visibility.dt', function (e, settings, column, state) {
+        console.log('Column ' + column + ' has changed to ' + (state ? 'visible' : 'hidden'));
+        if (props.setProps) {
+          const data = { column, state }
+          props.setProps({ table_event: { action: 'column-visibility', data: data } })
+        }
+      });
+
+      // Add the 'Column visibility' dropdown to the button bar
+      // 
+      // https://datatables.net/extensions/buttons/
+      // https://datatables.net/reference/api/buttons()
+      // https://datatables.net/extensions/buttons/examples/initialisation/multiple.html
+      // https://datatables.net/forums/discussion/30714/problems-initiating-dt-buttons-in-function-executed-via-initcomplete
 
 
-    new $.fn.dataTable.Buttons(this.table, {
-      name: 'primary',
-      buttons: [
-        {
-          extend: 'colvis',
-          className: "btn-sm",
-        },
-        {
-          text: 'Filter',
-          name: 'filter',
-          className: "btn-sm dropdown-toggle",
-          action: this.filterButtonAction
-        },
+      new $.fn.dataTable.Buttons(this.table, {
+        name: 'primary',
+        buttons: [
+          {
+            extend: 'colvis',
+            className: "btn-sm",
+          },
+          // {
+          //   text: 'Filter',
+          //   name: 'filter',
+          //   className: "btn-sm dropdown-toggle",
+          //   action: this.filterButtonAction
+          // },
 
+        ]
+      });
 
-      ]
-    });
+      this.table.buttons('primary', null).container().prependTo(`#${this.buttonBarID}`);
+    }
 
-    this.table.buttons('primary', null).container().prependTo(`#${this.buttonBarID}`);
 
     // Add Event listeners
     // 
@@ -193,16 +206,6 @@ export default class DashDatatables extends Component {
     // https://datatables.net/reference/event/
     // https://datatables.net/reference/event/column-visibility
 
-    const props = this.props
-
-    this.table.on('column-visibility.dt', function (e, settings, column, state) {
-      console.log('Column ' + column + ' has changed to ' + (state ? 'visible' : 'hidden'));
-      if (props.setProps) {
-        const data = { column, state }
-        props.setProps({ table_event: { action: 'column-visibility', data: data } })
-      }
-
-    });
 
     log.debug('%s.create_datatable()-done', this.tableID)
 
@@ -305,6 +308,7 @@ export default class DashDatatables extends Component {
 
 DashDatatables.defaultProps = {
   editable : false,
+  column_visibility : false,
   className : 'table table-sm table-striped table-bordered',
   pagelength : 25
 };
@@ -329,6 +333,12 @@ DashDatatables.propTypes = {
    */
 
   editable: PropTypes.bool,
+
+  /**
+   * Set `true` to enable column visibility control
+   */
+
+  column_visibility: PropTypes.bool,
 
   /**
    * Table data

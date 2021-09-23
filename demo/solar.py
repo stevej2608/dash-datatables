@@ -13,7 +13,7 @@ column_defs = [{"title": i, "data": i} for i in df.columns]
 
 layout = html.Div([
     html.Div([
-        html.Div([], className="col-md-2"),
+        html.Div([], className="col-md-1"),
         html.Div([
             html.H2('US Solar Capacity'),
             html.Br(),
@@ -27,7 +27,7 @@ layout = html.Div([
                 order=[2, 'asc'],
             ),
         html.Div(id='output')
-        ], className="col-md-8"),
-        html.Div([], className="col-md-2")
+        ], className="col-md-10"),
+        html.Div([], className="col-md-1")
     ], className='row')
 ], className="container-fluid")
