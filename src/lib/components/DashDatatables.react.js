@@ -46,6 +46,7 @@ export default class DashDatatables extends Component {
     this.filterButtonAction = this.filterButtonAction.bind(this);
 
     this.table_rows = props.data.length;
+    this.submit_count = 0
    }
 
   /**
@@ -54,7 +55,8 @@ export default class DashDatatables extends Component {
 
   addButtonAction() {
     log.info('%s.addButtonAction()', this.tableID)
-    this.props.setProps({ table_event: { action: 'add_row' } })
+    const submit_count = (++this.submit_count)
+    this.props.setProps({ table_event: { action: 'add_row', submit_count }})
   }
 
   /**
@@ -63,8 +65,9 @@ export default class DashDatatables extends Component {
 
   editButtonAction(e, dt) {
     log.info('%s.editButtonAction()', this.tableID)
+    const submit_count = (++this.submit_count)
     const data = dt.rows({ selected: true }).data()[0];
-    this.props.setProps({ table_event: { action: 'edit_row', data: data } })
+    this.props.setProps({ table_event: { action: 'edit_row', data: data, submit_count } })
   }
 
   /**
@@ -73,8 +76,9 @@ export default class DashDatatables extends Component {
 
   deleteButtonAction(e, dt) {
     log.info('%s.deleteButtonAction()', this.tableID)
+    const submit_count = (++this.submit_count)
     const data = dt.rows({ selected: true }).data()[0];
-    this.props.setProps({ table_event: { action: 'delete_row', data: data } })
+    this.props.setProps({ table_event: { action: 'delete_row', data: data, submit_count } })
   }
 
   filterButtonAction(e, dt) {

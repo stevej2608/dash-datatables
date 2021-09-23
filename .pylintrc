@@ -55,6 +55,9 @@ confidence=
 # no Warning level messages displayed, use"--disable=all --enable=classes
 # --disable=W"
 disable=print-statement,
+        # STJ
+        global-statement,
+        
         parameter-unpacking,
         unpacking-in-except,
         old-raise-syntax,
