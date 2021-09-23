@@ -30,6 +30,6 @@ if __name__ == '__main__':
         format='%(levelname)s %(asctime)s.%(msecs)03d %(module)10s/%(lineno)-5d %(message)s'
     )
 
-    print('\nvisit http://localhost:8050/\n')
+    print('\nvisit http://default:8050/solar\n')
 
     spa.run_server(debug=False, threaded=False)

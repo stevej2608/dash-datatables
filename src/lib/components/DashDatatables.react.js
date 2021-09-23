@@ -96,6 +96,10 @@ export default class DashDatatables extends Component {
       pageLength: this.props.pagelength || 10,
     };
 
+    if (this.props.select){
+      options.select = this.props.select
+    }
+
     if (this.props.data){
       options.data = this.props.data
     }
@@ -158,10 +162,31 @@ export default class DashDatatables extends Component {
     const $el = $(this.el);
 
     this.table = $el.DataTable(options);
-
     const props = this.props
 
+    // Handle row selection reporting
+
+    if (props.select) {
+
+      function report_selected(e, dt, type, indexes) {
+        if (props.setProps) {
+          var indexes = dt.rows( { selected: true } )[0]
+          props.setProps({ table_event: { action: 'selectItems', indexes } })
+        }       
+      }
+
+      this.table.on('select', report_selected);
+      this.table.on('deselect', report_selected);
+
+    }
+
     if (props.column_visibility) {
+
+      // Add Event listeners
+      // 
+      // https://datatables.net/manual/events
+      // https://datatables.net/reference/event/
+      // https://datatables.net/reference/event/column-visibility
       
       this.table.on('column-visibility.dt', function (e, settings, column, state) {
         console.log('Column ' + column + ' has changed to ' + (state ? 'visible' : 'hidden'));
@@ -198,14 +223,6 @@ export default class DashDatatables extends Component {
 
       this.table.buttons('primary', null).container().prependTo(`#${this.buttonBarID}`);
     }
-
-
-    // Add Event listeners
-    // 
-    // https://datatables.net/manual/events
-    // https://datatables.net/reference/event/
-    // https://datatables.net/reference/event/column-visibility
-
 
     log.debug('%s.create_datatable()-done', this.tableID)
 
@@ -360,6 +377,14 @@ DashDatatables.propTypes = {
    */
 
   column_defs: PropTypes.array,
+
+  /**
+   * Select adds item selection capabilities to a DataTable, see:
+   * 
+   * https://datatables.net/extensions/select/examples/
+   */
+
+  select: PropTypes.array,
 
   /**
    * Report table events
