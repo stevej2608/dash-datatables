@@ -19,34 +19,38 @@ df.insert(0, '', '')
 
 columns = [{"title": i, "data": i} for i in df.columns]
 
+def solar_table():
+    return ddt.DashDatatables(
+        id='solar',
+        columns=columns,
+        data=df.to_dict('records'),
+        width="100%",
+        order=[2, 'asc'],
+
+        # Following is needed for checkbox based row selection
+        # https://datatables.net/extensions/select/examples/initialisation/checkbox
+
+        column_defs = [ {
+            "width": "5%", "targets": 0 ,
+            'orderable': False,
+            'className': 'select-checkbox',
+            }],
+
+        select = {
+            'style':    'os',
+            'selector': 'td:first-child'
+            },
+    )
+
+
 layout = html.Div([
     html.Div([
         html.Div([], className="col-md-1"),
         html.Div([
             html.H2('US Solar Capacity'),
             html.Br(),
-            ddt.DashDatatables(
-                id='solar',
-                columns=columns,
-                data=df.to_dict('records'),
-                width="100%",
-                order=[2, 'asc'],
-
-                # Following is needed for checkbox based row selection
-                # https://datatables.net/extensions/select/examples/initialisation/checkbox
-
-                column_defs = [ {
-                    "width": "5%", "targets": 0 ,
-                    'orderable': False,
-                    'className': 'select-checkbox',
-                    }],
-
-                select = {
-                    'style':    'os',
-                    'selector': 'td:first-child'
-                    },
-            ),
-        html.Div(id='solar#output')
+            html.Div(solar_table(), id='table-container'),
+            html.Div(id='solar#output')
         ], className="col-md-10"),
         html.Div([], className="col-md-1")
     ], className='row')
