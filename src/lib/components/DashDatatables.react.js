@@ -23,6 +23,20 @@ function shallow_copy(src) {
 }
 
 
+const hash_json = function(json, seed = 0) {
+    const str = JSON.stringify(json)
+    let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+    for (let i = 0, ch; i < str.length; i++) {
+        ch = str.charCodeAt(i);
+        h1 = Math.imul(h1 ^ ch, 2654435761);
+        h2 = Math.imul(h2 ^ ch, 1597334677);
+    }
+    h1 = Math.imul(h1 ^ (h1>>>16), 2246822507) ^ Math.imul(h2 ^ (h2>>>13), 3266489909);
+    h2 = Math.imul(h2 ^ (h2>>>16), 2246822507) ^ Math.imul(h1 ^ (h1>>>13), 3266489909);
+    return 4294967296 * (2097151 & h2) + (h1>>>0);
+};
+
+
 var TABLE_ID = 0;
 
 /**
@@ -45,7 +59,7 @@ export default class DashDatatables extends Component {
     this.deleteButtonAction = this.deleteButtonAction.bind(this);
     this.filterButtonAction = this.filterButtonAction.bind(this);
 
-    this.table_rows = props.data.length;
+    this.table_hash = hash_json(props.data);
     this.submit_count = 0
    }
 
@@ -252,12 +266,16 @@ export default class DashDatatables extends Component {
       return
     } 
 
-    if (this.props.data && (this.table_rows !== this.props.data.length)){
-      log.debug('table %s rows %d', this.props.id, this.props.data.length)
-      this.table_rows = this.props.data.length
-      this.table.clear().draw();
-      this.table.rows.add(this.props.data);
-      this.table.columns.adjust().draw();
+
+    if (this.props.data) {
+      const table_hash = hash_json(this.props.data);
+      if (this.table_hash !== table_hash){
+        log.debug('table %s rows %d', this.props.id, this.props.data.length)
+        this.table_hash = this.table_hash
+        this.table.clear().draw();
+        this.table.rows.add(this.props.data);
+        this.table.columns.adjust().draw();
+      }
     }
   }
 

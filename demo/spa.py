@@ -15,7 +15,7 @@ class SinglePageApp:
 
     def run_server(self, debug=True, threaded=True):
         #self.app.run_server(debug=debug)
-        self.app.run_server(debug=debug, host="0.0.0.0", threaded=threaded, dev_tools_serve_dev_bundles=True)
+        self.app.run_server(debug=debug, host="0.0.0.0", threaded=threaded, dev_tools_serve_dev_bundles=False)
 
 
     def pageLayout(self):

@@ -1,8 +1,5 @@
 from dash import html
-from dash.dependencies import Input, Output
-
 import dash_datatables as ddt
-
 import pandas as pd
 
 # https://dash.plot.ly/datatable
