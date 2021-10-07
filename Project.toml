@@ -2,7 +2,7 @@
 name = "DashDatatables"
 uuid = "1b08a953-4be3-4667-9a23-af9cc07c4b19"
 authors = ["Steve Jones <jonesst2608@gmail.com>"]
-version = "0.0.7"
+version = "0.0.9"
 
 [deps]
 Dash = "1b08a953-4be3-4667-9a23-3db579824955"

@@ -1,6 +1,6 @@
 {
   "name": "dash_datatables",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "Dash wrapper for Datatables.net",
   "repository": {
     "type": "git",
