@@ -1,5 +1,5 @@
-include dash_datatables/dash_datatables.min.js
-include dash_datatables/dash_datatables.min.js.map
+include dash_datatables/dash_datatables.*.js
+include dash_datatables/dash_datatables.*.js.map
 include dash_datatables/async-*.js
 include dash_datatables/async-*.js.map
 include dash_datatables/*-shared.js
