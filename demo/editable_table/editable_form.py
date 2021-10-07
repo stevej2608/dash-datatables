@@ -20,10 +20,10 @@ def isTriggered(component_id, component_property):
 
 
 def form_body(action="blank_form", row_data=None):
-    """Return form that's fully populated with relavent fields and buttons for the given action"""
+    """Return form that's fully populated with relevant fields and buttons for the given action"""
 
-    def form_field(lable, name, value):
-        return dbc.FormGroup([dbc.Label(lable), dbc.Input(name=name, value=value)])
+    def form_field(label, name, value):
+        return dbc.FormGroup([dbc.Label(label), dbc.Input(name=name, value=value)])
 
     def form_builder(form, buttons):
         form.children = [
