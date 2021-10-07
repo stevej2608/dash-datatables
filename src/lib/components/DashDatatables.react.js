@@ -271,7 +271,7 @@ export default class DashDatatables extends Component {
       const table_hash = hash_json(this.props.data);
       if (this.table_hash !== table_hash){
         log.debug('table %s rows %d', this.props.id, this.props.data.length)
-        this.table_hash = this.table_hash
+        this.table_hash = table_hash
         this.table.clear().draw();
         this.table.rows.add(this.props.data);
         this.table.columns.adjust().draw();
